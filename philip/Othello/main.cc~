@@ -1,0 +1,38 @@
+
+#include "othello.h"
+#include "board.h"
+#include "game.h"
+#include "piece.h"
+#include <iostream>
+
+using namespace std;
+
+void play(othello& game, string& move)
+{
+  while(true)
+  {
+    move = game.get_user_move();
+    while(!game.is_legal(move))
+    {
+      cout << "Illegal Move!\n";
+      move = game.get_user_move();
+    }
+    game.make_move(move);
+    game.display_status();
+  }
+}
+
+
+int main()
+{
+  othello game;
+  string move;
+  try
+  {
+    play(game, move);
+  }
+  catch(int i)
+  {
+    return 0;
+  }
+}
